@@ -5,18 +5,18 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <link rel="dns-prefetch" href="http://www.tankai.net">
+  <title>Tank&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:title" content="Tank&#39;s blog">
+<meta property="og:url" content="http://www.tankai.net/index.html">
+<meta property="og:site_name" content="Tank&#39;s blog">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Tank&#39;s blog">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Tank&#39;s blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -46,7 +46,7 @@
 			<img src class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">Tank</a></h1>
 		</hgroup>
 		
 
@@ -104,7 +104,7 @@
 				<img src class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">Tank</h1>
 			</hgroup>
 			
 			
@@ -152,12 +152,159 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Docker-01概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-MySql优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/14/MySql优化/">MySql优化</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/14/MySql优化/" class="archive-article-date">
+  	<time datetime="2019-05-14T05:52:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-14</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Docker-01-Docker-是什么"><a href="#Docker-01-Docker-是什么" class="headerlink" title="Docker-01 Docker 是什么"></a>Docker-01 Docker 是什么</h1><h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><p>1.Docker是什么</p>
+        <h1 id="一、什么影响了数据库查询速度"><a href="#一、什么影响了数据库查询速度" class="headerlink" title="一、什么影响了数据库查询速度"></a>一、什么影响了数据库查询速度</h1><h2 id="1-1-影响数据库查询速度的四个因素"><a href="#1-1-影响数据库查询速度的四个因素" class="headerlink" title="1.1 影响数据库查询速度的四个因素"></a>1.1 影响数据库查询速度的四个因素</h2><h2 id="1-2-风险分析"><a href="#1-2-风险分析" class="headerlink" title="1.2 风险分析"></a>1.2 风险分析</h2><p>QPS：Queries Per Second意思是“每秒查询率”，是一台服务器每秒能够相应的查询次数，是对一个特定的查询服务器在规定时间内所处理流量多少的衡量标准。</p>
+<p>TPS：是TransactionsPerSecond的缩写，也就是事务数/秒。它是软件测试结果的测量单位。客户机在发送请求时开始计时，收到服务器响应后结束计时，以此来计算使用的时间和完成的事务个数。</p>
+<p>Tips：最好不要在主库上数据库备份，大型活动前取消这样的计划。</p>
+<p>1、效率低下的sql：超高的QPS与TPS。</p>
+<p>2、大量的并发：数据连接数被占满（max_connection默认100，一般把连接数设置得大一些）。</p>
+<p>3、并发量:同一时刻数据库服务器处理的请求数量</p>
+<p>4、超高的CPU使用率：CPU资源耗尽出现宕机。</p>
+<p>5、磁盘IO：磁盘IO性能突然下降、大量消耗磁盘性能的计划任务。解决：更快磁盘设备、调整计划任务、做好磁盘维护。    </p>
+<h2 id="1-3-网卡流量：如何避免无法连接数据库的情况"><a href="#1-3-网卡流量：如何避免无法连接数据库的情况" class="headerlink" title="1.3 网卡流量：如何避免无法连接数据库的情况"></a>1.3 网卡流量：如何避免无法连接数据库的情况</h2><p>1、减少从服务器的数量（从服务器会从主服务器复制日志）<br>2、进行分级缓存（避免前端大量缓存失效）<br>3、避免使用select * 进行查询<br>4、分离业务网络和服务器网络    </p>
+<h2 id="1-4-大表带来的问题（重要）"><a href="#1-4-大表带来的问题（重要）" class="headerlink" title="1.4 大表带来的问题（重要）"></a>1.4 大表带来的问题（重要）</h2><h3 id="1-4-1-大表的特点"><a href="#1-4-1-大表的特点" class="headerlink" title="1.4.1 大表的特点"></a>1.4.1 大表的特点</h3><p>1、记录行数巨大，单表超千万<br>2、表数据文件巨大，超过10个G</p>
+<h3 id="1-4-2-大表的危害"><a href="#1-4-2-大表的危害" class="headerlink" title="1.4.2 大表的危害"></a>1.4.2 大表的危害</h3><p>1.慢查询：很难在短时间内过滤出需要的数据<br>查询字区分度低 -&gt; 要在大数据量的表中筛选出来其中一部分数据会产生大量的磁盘io -&gt; 降低磁盘效率</p>
+<p>2.对DDL影响：<br>建立索引需要很长时间：<br>MySQL -v&lt;5.5 建立索引会锁表<br>MySQL -v&gt;=5.5 建立索引会造成主从延迟（mysql建立索引，先在组上执行，再在库上执行）<br>修改表结构需要长时间的锁表：会造成长时间的主从延迟(‘480秒延迟’)</p>
+<h3 id="1-4-3-如何处理数据库上的大表"><a href="#1-4-3-如何处理数据库上的大表" class="headerlink" title="1.4.3 如何处理数据库上的大表"></a>1.4.3 如何处理数据库上的大表</h3><p>分库分表把一张大表分成多个小表<br>难点：<br>1.分表主键的选择<br>2.分表后跨分区数据的查询和统计</p>
+<h2 id="1-5-大事务带来的问题（重要）"><a href="#1-5-大事务带来的问题（重要）" class="headerlink" title="1.5 大事务带来的问题（重要）"></a>1.5 大事务带来的问题（重要）</h2><h3 id="1-5-1-什么是事务"><a href="#1-5-1-什么是事务" class="headerlink" title="1.5.1 什么是事务"></a>1.5.1 什么是事务</h3><p>1.事务是数据库系统区别于其他一切文件系统的重要特性之一<br>2.事务是一组具有原子性的SQL语句，或是一个独立的工作单元</p>
+<h3 id="1-5-2事务的ACID属性"><a href="#1-5-2事务的ACID属性" class="headerlink" title="1.5.2事务的ACID属性"></a>1.5.2事务的ACID属性</h3><p>1、原子性（atomicity)：全部成功，全部回滚失败。银行存取款。<br>2、一致性（consistent)：银行转账的总金额不变。<br>3、隔离性（isolation)：</p>
+<p>隔离性等级：<br>未提交读(READ UNCOMMITED) 脏读,两个事务之间互相可见；<br>已提交读(READ COMMITED)符合隔离性的基本概念,一个事务进行时，其它已提交的事物对于该事务是可见的，即可以获取其它事务提交的数据。<br>可重复读(REPEATABLE READ) InnoDB的默认隔离等级。事务进行时，其它所有事务对其不可见，即多次执行读，得到的结果是一样的！<br>可串行化（SERIALIZABLE） 在读取的每一行数据上都加锁，会造成大量的锁超时和锁征用，严格数据一致性且没有并发是可使用。<br>查看系统的事务隔离级别：show variables like ‘%iso%’;<br>开启一个新事务：begin;<br>提交一个事务：commit;<br>修改事物的隔离级别：set session tx_isolation=’read-committed’;</p>
+<p>4、持久性(DURABILITY)：从数据库的角度的持久性，磁盘损坏就不行了</p>
+<p>redo log机制保证事务更新的一致性和持久性</p>
+<h3 id="1-5-3-大事务"><a href="#1-5-3-大事务" class="headerlink" title="1.5.3 大事务"></a>1.5.3 大事务</h3><p>运行时间长，操作数据比较多的事务；</p>
+<p>风险：锁定数据太多，回滚时间长，执行时间长。</p>
+<p>1.锁定太多数据，造成大量阻塞和锁超时；<br>2.回滚时所需时间比较长，且数据仍然会处于锁定；<br>3.如果执行时间长，将造成主从延迟，因为只有当主服务器全部执行完写入日志时，从服务器才会开始进行同步，造成延迟。<br>解决思路：</p>
+<p>1.避免一次处理太多数据，可以分批次处理；<br>2.移出不必要的SELECT操作，保证事务中只有必要的写操作。</p>
+<h1 id="二、什么影响了MySQL性能（非常重要）"><a href="#二、什么影响了MySQL性能（非常重要）" class="headerlink" title="二、什么影响了MySQL性能（非常重要）"></a>二、什么影响了MySQL性能（非常重要）</h1><h2 id="2-1-影响性能的几个方面"><a href="#2-1-影响性能的几个方面" class="headerlink" title="2.1 影响性能的几个方面"></a>2.1 影响性能的几个方面</h2><p>1.服务器硬件。<br>2.服务器系统（系统参数优化）。<br>3.存储引擎。<br>    MyISAM： 不支持事务，表级锁。<br>    InnoDB: 支持事务，支持行级锁，事务ACID。<br>4.数据库参数配置。<br>5.数据库结构设计和SQL语句。（重点优化）</p>
+<h2 id="2-2-MySQL体系结构"><a href="#2-2-MySQL体系结构" class="headerlink" title="2.2 MySQL体系结构"></a>2.2 MySQL体系结构</h2><p>分三层：客户端-&gt;服务层-&gt;存储引擎</p>
+<p>1.MySQL是插件式的存储引擎，其中存储引擎分很多种。只要实现符合mysql存储引擎的接口，可以开发自己的存储引擎!<br>2.所有跨存储引擎的功能都是在服务层实现的。<br>3.MySQL的存储引擎是针对表的，不是针对库的。也就是说在一个数据库中可以使用不同的存储引擎。但是不建议这样做。</p>
+<h2 id="2-3-InnoDB存储引擎"><a href="#2-3-InnoDB存储引擎" class="headerlink" title="2.3 InnoDB存储引擎"></a>2.3 InnoDB存储引擎</h2><p>MySQL5.5及之后版本默认的存储引擎：InnoDB。</p>
+<h3 id="2-3-1-InnoDB使用表空间进行数据存储。"><a href="#2-3-1-InnoDB使用表空间进行数据存储。" class="headerlink" title="2.3.1 InnoDB使用表空间进行数据存储。"></a>2.3.1 InnoDB使用表空间进行数据存储。</h3><p>show variables like ‘innodb_file_per_table</p>
+<p>如果innodb_file_per_table 为 ON 将建立独立的表空间，文件为tablename.ibd；</p>
+<p>如果innodb_file_per_table 为 OFF 将数据存储到系统的共享表空间，文件为ibdataX（X为从1开始的整数）；</p>
+<p>.frm ：是服务器层面产生的文件，类似服务器层的数据字典，记录表结构。</p>
+<h3 id="2-3-2-MySQL5-5默认-系统表空间与-MySQL5-6及以后默认-独立表空间"><a href="#2-3-2-MySQL5-5默认-系统表空间与-MySQL5-6及以后默认-独立表空间" class="headerlink" title="2.3.2 (MySQL5.5默认)系统表空间与(MySQL5.6及以后默认)独立表空间"></a>2.3.2 (MySQL5.5默认)系统表空间与(MySQL5.6及以后默认)独立表空间</h3><p>1.1 系统表空间无法简单的收缩文件大小，造成空间浪费，并会产生大量的磁盘碎片。</p>
+<p>1.2 独立表空间可以通过optimeze table 收缩系统文件，不需要重启服务器也不会影响对表的正常访问。</p>
+<p>2.1 如果对多个表进行刷新时，实际上是顺序进行的，会产生IO瓶颈。</p>
+<p>2.2 独立表空间可以同时向多个文件刷新数据。<br>强烈建立对Innodb 使用独立表空间，优化什么的更方便，可控。</p>
+<h3 id="2-3-3-系统表空间的表转移到独立表空间中的方法"><a href="#2-3-3-系统表空间的表转移到独立表空间中的方法" class="headerlink" title="2.3.3 系统表空间的表转移到独立表空间中的方法"></a>2.3.3 系统表空间的表转移到独立表空间中的方法</h3><p>1、使用mysqldump 导出所有数据库数据（存储过程、触发器、计划任务一起都要导出 ）可以在从服务器上操作。</p>
+<p>2、停止MYsql 服务器，修改参数（my.cnf加入innodb_file_per_table），并删除Inoodb相关文件（可以重建Data目录）。</p>
+<p>3、重启MYSQL，并重建Innodb系统表空间。</p>
+<p>4、 重新导入数据。</p>
+<p>或者 Alter table 同样可以的转移，但是无法回收系统表空间中占用的空间。<br>2.4 InnoDB存储引擎的特性<br>2.4.1 特性一：事务性存储引擎及两个特殊日志类型：Redo Log 和 Undo Log<br>1.Innodb 是一种事务性存储引擎。<br>2.完全支持事务的ACID特性。<br>3.支持事务所需要的两个特殊日志类型：Redo Log 和Undo Log</p>
+<p>Redo Log：实现事务的持久性(已提交的事务)。<br>Undo Log：未提交的事务，独立于表空间，需要随机访问，可以存储在高性能io设备上。<br>Undo日志记录某数据被修改前的值，可以用来在事务失败时进行rollback；Redo日志记录某数据块被修改后的值，可以用来恢复未写入data file的已成功事务更新的数据。</p>
+<h3 id="2-4-2-特性二：支持行级锁"><a href="#2-4-2-特性二：支持行级锁" class="headerlink" title="2.4.2 特性二：支持行级锁"></a>2.4.2 特性二：支持行级锁</h3><p>1.InnoDB支持行级锁。<br>2.行级锁可以最大程度地支持并发。<br>3.行级锁是由存储引擎层实现的。</p>
+<h2 id="2-5-什么是锁"><a href="#2-5-什么是锁" class="headerlink" title="2.5 什么是锁"></a>2.5 什么是锁</h2><h3 id="2-5-1-锁"><a href="#2-5-1-锁" class="headerlink" title="2.5.1 锁"></a>2.5.1 锁</h3><p>1.锁对主要作用是管理共享资源的并发访问<br>2.锁用于实现事务的隔离性</p>
+<h3 id="2-5-2-锁类型"><a href="#2-5-2-锁类型" class="headerlink" title="2.5.2 锁类型"></a>2.5.2 锁类型</h3><p>   行级锁<br>   表级锁</p>
+<h3 id="2-5-3-锁的粒度"><a href="#2-5-3-锁的粒度" class="headerlink" title="2.5.3 锁的粒度"></a>2.5.3 锁的粒度</h3><p>MySQL的事务支持不是绑定在MySQL服务器本身，而是与存储引擎相关</p>
+<p>将table_name加表级锁命令：lock table table_name write; 写锁会阻塞其它用户对该表的‘读写’操作，直到写锁被释放：unlock tables；</p>
+<p>1.锁的开销越大，粒度越小，并发度越高。<br>2.表级锁通常是在服务器层实现的。<br>3.行级锁是存储引擎层实现的。innodb的锁机制，服务器层是不知道的</p>
+<h3 id="2-5-4-阻塞和死锁"><a href="#2-5-4-阻塞和死锁" class="headerlink" title="2.5.4 阻塞和死锁"></a>2.5.4 阻塞和死锁</h3><p>（1）阻塞是由于资源不足引起的排队等待现象。<br>（2）死锁是由于两个对象在拥有一份资源的情况下申请另一份资源，而另一份资源恰好又是这两对象正持有的，导致两对象无法完成操作，且所持资源无法释放。<br>2.6 如何选择正确的存储引擎<br>参考条件：<br>    1.事务<br>    2.备份(Innobd免费在线备份)<br>    3.崩溃恢复<br>    4.存储引擎的特有特性</p>
+<p>总结:Innodb大法好。<br>注意:尽量别使用混合存储引擎，比如回滚会出问题在线热备问题。<br>2.7 配置参数<br>2.7.1 内存配置相关参数<br>确定可以使用的内存上限。</p>
+<p>内存的使用上限不能超过物理内存，否则容易造成内存溢出；（对于32位操作系统，MySQL只能试用3G以下的内存。）</p>
+<p>确定MySQL的每个连接单独使用的内存。</p>
+<p>sort_buffer_size #定义了每个线程排序缓存区的大小，MySQL在有查询、需要做排序操作时才会为每个缓冲区分配内存（直接分配该参数的全部内存）；<br>join_buffer_size #定义了每个线程所使用的连接缓冲区的大小，如果一个查询关联了多张表，MySQL会为每张表分配一个连接缓冲，导致一个查询产生了多个连接缓冲；<br>read_buffer_size #定义了当对一张MyISAM进行全表扫描时所分配读缓冲池大小，MySQL有查询需要时会为其分配内存，其必须是4k的倍数；<br>read_rnd_buffer_size #索引缓冲区大小，MySQL有查询需要时会为其分配内存，只会分配需要的大小。</p>
+<p>注意：以上四个参数是为一个线程分配的，如果有100个连接，那么需要×100。<br>MySQL数据库实例：</p>
+<p>　①MySQL是单进程多线程（而oracle是多进程），也就是说MySQL实例在系统上表现就是一个服务进程，即进程；</p>
+<p>　②MySQL实例是线程和内存组成，实例才是真正用于操作数据库文件的；</p>
+<p>一般情况下一个实例操作一个或多个数据库；集群情况下多个实例操作一个或多个数据库。</p>
+<p>如何为缓存池分配内存：<br>Innodb_buffer_pool_size，定义了Innodb所使用缓存池的大小，对其性能十分重要，必须足够大，但是过大时，使得Innodb 关闭时候需要更多时间把脏页从缓冲池中刷新到磁盘中；<br>总内存-（每个线程所需要的内存*连接数）-系统保留内存</p>
+<p>key_buffer_size，定义了MyISAM所使用的缓存池的大小，由于数据是依赖存储操作系统缓存的，所以要为操作系统预留更大的内存空间；<br>select sum(index_length) from information_schema.talbes where engine=’myisam’</p>
+<p>注意：即使开发使用的表全部是Innodb表，也要为MyISAM预留内存，因为MySQL系统使用的表仍然是MyISAM表。</p>
+<p>max_connections 控制允许的最大连接数， 一般2000更大。<br>不要使用外键约束保证数据的完整性。<br>2.8 性能优化顺序<br>从上到下：<br>    数据库结构设计和SQL语句。<br>    数据库存储引擎的选择和参数配置<br>    系统选择及优化<br>    硬件升级<br>来源：<a href="https://segmentfault.com/a/1190000013672421" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013672421</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MySQL 优化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/14/MySql优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Docker简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/14/Docker简介/">Docker简介</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/14/Docker简介/" class="archive-article-date">
+  	<time datetime="2019-05-14T04:17:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h1><h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><p>1.Docker简介</p>
 <p>2.为什么使用Docker</p>
 <p>3.Docker的安装和使用</p>
 <h2 id="一、什么是Docker"><a href="#一、什么是Docker" class="headerlink" title="一、什么是Docker"></a>一、什么是Docker</h2><p>官方定义：Docker是世界领先的软件容器平台。是dotCloud开源的一个基于LXC（注：LXC又名Linux container，是一种虚拟化的解决方案，是内核级的虚拟化）的高级容器引擎，基于go语言并遵循Apache2.0协议，源码托管于GitHub。 </p>
@@ -192,16 +339,46 @@
 </tr>
 </tbody>
 </table>
-<h3 id="1-虚拟机（寄居架构和裸金属架构）"><a href="#1-虚拟机（寄居架构和裸金属架构）" class="headerlink" title="1.虚拟机（寄居架构和裸金属架构）"></a>1.虚拟机（寄居架构和裸金属架构）</h3><h5 id="■-有自己的OS操作系统"><a href="#■-有自己的OS操作系统" class="headerlink" title="■ 有自己的OS操作系统"></a>■ 有自己的OS操作系统</h5><h5 id="■-独立于主机OS"><a href="#■-独立于主机OS" class="headerlink" title="■ 独立于主机OS"></a>■ 独立于主机OS</h5><h5 id="■-宿主型管理程序将虚机当作一个个进程运行在主机上"><a href="#■-宿主型管理程序将虚机当作一个个进程运行在主机上" class="headerlink" title="■ 宿主型管理程序将虚机当作一个个进程运行在主机上"></a>■ 宿主型管理程序将虚机当作一个个进程运行在主机上</h5><h5 id="■-虚机内核可以和主机不同。"><a href="#■-虚机内核可以和主机不同。" class="headerlink" title="■ 虚机内核可以和主机不同。"></a>■ 虚机内核可以和主机不同。</h5><h5 id="宿主型管理应用程序有："><a href="#宿主型管理应用程序有：" class="headerlink" title="宿主型管理应用程序有："></a>宿主型管理应用程序有：</h5><h5 id="■-开源OpenStack的kvm"><a href="#■-开源OpenStack的kvm" class="headerlink" title="■ 开源OpenStack的kvm"></a>■ 开源OpenStack的kvm</h5><h5 id="■-VMware的vSphere"><a href="#■-VMware的vSphere" class="headerlink" title="■ VMware的vSphere"></a>■ VMware的vSphere</h5><h5 id="■-微软的Hyper-V"><a href="#■-微软的Hyper-V" class="headerlink" title="■ 微软的Hyper-V"></a>■ 微软的Hyper-V</h5><h5 id="■-Citrix的XenServer"><a href="#■-Citrix的XenServer" class="headerlink" title="■ Citrix的XenServer"></a>■ Citrix的XenServer</h5><h5 id="■-IBM的PowerVM"><a href="#■-IBM的PowerVM" class="headerlink" title="■ IBM的PowerVM"></a>■ IBM的PowerVM</h5><h5 id="■-Red-Hat-Enterprise-Virtulization"><a href="#■-Red-Hat-Enterprise-Virtulization" class="headerlink" title="■ Red Hat Enterprise Virtulization"></a>■ Red Hat Enterprise Virtulization</h5><h5 id="■-华为FusionSphere"><a href="#■-华为FusionSphere" class="headerlink" title="■ 华为FusionSphere"></a>■ 华为FusionSphere</h5><h3 id="2-容器"><a href="#2-容器" class="headerlink" title="2.容器"></a>2.容器</h3><h4 id="容器之间共享主机的OS操作系统"><a href="#容器之间共享主机的OS操作系统" class="headerlink" title="容器之间共享主机的OS操作系统"></a>容器之间共享主机的OS操作系统</h4><h4 id="容器被当作一个进程运行在主机上"><a href="#容器被当作一个进程运行在主机上" class="headerlink" title="容器被当作一个进程运行在主机上"></a>容器被当作一个进程运行在主机上</h4><h4 id="容器引擎有："><a href="#容器引擎有：" class="headerlink" title="容器引擎有："></a>容器引擎有：</h4><h5 id="■-Docker"><a href="#■-Docker" class="headerlink" title="■ Docker"></a>■ Docker</h5><h5 id="■CoreOS-rkt"><a href="#■CoreOS-rkt" class="headerlink" title="■CoreOS rkt"></a>■CoreOS rkt</h5><h5 id="■Mesos-containerizer"><a href="#■Mesos-containerizer" class="headerlink" title="■Mesos containerizer"></a>■Mesos containerizer</h5><h3 id="容器就是将软件打包成标准化单元，以用于开发、交付和部署"><a href="#容器就是将软件打包成标准化单元，以用于开发、交付和部署" class="headerlink" title="容器就是将软件打包成标准化单元，以用于开发、交付和部署"></a>容器就是将软件打包成标准化单元，以用于开发、交付和部署</h3><h2 id="三、为什么使用Docker"><a href="#三、为什么使用Docker" class="headerlink" title="三、为什么使用Docker"></a>三、为什么使用Docker</h2><h4 id="■-团队开发、解决开发环境问题"><a href="#■-团队开发、解决开发环境问题" class="headerlink" title="■  团队开发、解决开发环境问题"></a>■  团队开发、解决开发环境问题</h4><h4 id="■-秒级甚至毫秒级的启动时间"><a href="#■-秒级甚至毫秒级的启动时间" class="headerlink" title="■   秒级甚至毫秒级的启动时间"></a>■   秒级甚至毫秒级的启动时间</h4><h4 id="■-方便应用的部署和迁移"><a href="#■-方便应用的部署和迁移" class="headerlink" title="■   方便应用的部署和迁移"></a>■   方便应用的部署和迁移</h4><h4 id="■-持续集成、持续交付和部署"><a href="#■-持续集成、持续交付和部署" class="headerlink" title="■   持续集成、持续交付和部署"></a>■   持续集成、持续交付和部署</h4><h4 id="■-程序服务资源竞争的问题"><a href="#■-程序服务资源竞争的问题" class="headerlink" title="■   程序服务资源竞争的问题"></a>■   程序服务资源竞争的问题</h4><h4 id="■-服务器集群-节点-动态扩容"><a href="#■-服务器集群-节点-动态扩容" class="headerlink" title="■   服务器集群/节点 动态扩容"></a>■   服务器集群/节点 动态扩容</h4><h2 id="四、Docker的安装使用"><a href="#四、Docker的安装使用" class="headerlink" title="四、Docker的安装使用"></a>四、Docker的安装使用</h2><h4 id="1-Docker的安装"><a href="#1-Docker的安装" class="headerlink" title="1.Docker的安装"></a>1.Docker的安装</h4><p>1.#yum install docker             #安装docker</p>
+<h3 id="1-虚拟机（寄居架构和裸金属架构）"><a href="#1-虚拟机（寄居架构和裸金属架构）" class="headerlink" title="1.虚拟机（寄居架构和裸金属架构）"></a>1.虚拟机（寄居架构和裸金属架构）</h3><p> ■ 有自己的OS操作系统</p>
+<p> ■ 独立于主机OS</p>
+<p> ■ 宿主型管理程序将虚机当作一个个进程运行在主机上</p>
+<p> ■ 虚机内核可以和主机不同。</p>
+<p> 宿主型管理应用程序有：</p>
+<p> ■ 开源OpenStack的kvm</p>
+<p> ■ VMware的vSphere</p>
+<p> ■ 微软的Hyper-V</p>
+<p> ■ Citrix的XenServer</p>
+<p> ■ IBM的PowerVM</p>
+<p> ■ Red Hat Enterprise Virtulization</p>
+<p> ■ 华为FusionSphere</p>
+<h3 id="2-容器"><a href="#2-容器" class="headerlink" title="2.容器"></a>2.容器</h3><h4 id="容器之间共享主机的OS操作系统"><a href="#容器之间共享主机的OS操作系统" class="headerlink" title="容器之间共享主机的OS操作系统"></a>容器之间共享主机的OS操作系统</h4><h4 id="容器被当作一个进程运行在主机上"><a href="#容器被当作一个进程运行在主机上" class="headerlink" title="容器被当作一个进程运行在主机上"></a>容器被当作一个进程运行在主机上</h4><h4 id="容器引擎有："><a href="#容器引擎有：" class="headerlink" title="容器引擎有："></a>容器引擎有：</h4><p> ■ Docker</p>
+<p> ■CoreOS rkt    </p>
+<p> ■Mesos containerizer</p>
+<h3 id="容器就是将软件打包成标准化单元，以用于开发、交付和部署"><a href="#容器就是将软件打包成标准化单元，以用于开发、交付和部署" class="headerlink" title="容器就是将软件打包成标准化单元，以用于开发、交付和部署"></a>容器就是将软件打包成标准化单元，以用于开发、交付和部署</h3><h2 id="三、为什么使用Docker"><a href="#三、为什么使用Docker" class="headerlink" title="三、为什么使用Docker"></a>三、为什么使用Docker</h2><p> ■  团队开发、解决开发环境问题</p>
+<p> ■   秒级甚至毫秒级的启动时间</p>
+<p> ■   方便应用的部署和迁移</p>
+<p> ■   持续集成、持续交付和部署</p>
+<p> ■   程序服务资源竞争的问题</p>
+<p> ■   服务器集群/节点 动态扩容 </p>
+<h2 id="四、Docker的安装使用"><a href="#四、Docker的安装使用" class="headerlink" title="四、Docker的安装使用"></a>四、Docker的安装使用</h2><h4 id="1-Docker的安装"><a href="#1-Docker的安装" class="headerlink" title="1.Docker的安装"></a>1.Docker的安装</h4><p>1.#yum install docker             #安装docker</p>
 <p>2.#systemctl start docker         #启动docker</p>
 <p>3.#systemctl enable docker     # 开机启动docker</p>
 <p>4.#docker info                  #查看docker信息</p>
-<h4 id="2-Docker的基本概念"><a href="#2-Docker的基本概念" class="headerlink" title="2.Docker的基本概念"></a>2.Docker的基本概念</h4><h5 id="Docker-采用的是-Client-Server-架构，所以有必要了解Docker的几个基本概念："><a href="#Docker-采用的是-Client-Server-架构，所以有必要了解Docker的几个基本概念：" class="headerlink" title="Docker 采用的是 Client/Server 架构，所以有必要了解Docker的几个基本概念："></a>Docker 采用的是 Client/Server 架构，所以有必要了解Docker的几个基本概念：</h5><h5 id="■-Client（客户端）"><a href="#■-Client（客户端）" class="headerlink" title="■ Client（客户端）"></a>■ Client（客户端）</h5><h5 id="■-Server（daemon服务端）"><a href="#■-Server（daemon服务端）" class="headerlink" title="■ Server（daemon服务端）"></a>■ Server（daemon服务端）</h5><h5 id="■-镜像（Image）-操作系统分为内核和用户空间。"><a href="#■-镜像（Image）-操作系统分为内核和用户空间。" class="headerlink" title="■ 镜像（Image） 操作系统分为内核和用户空间。"></a>■ 镜像（Image） 操作系统分为内核和用户空间。</h5><p>对于Linux而言，内核启动后，会挂载root文件系统为其提供用户空间支 持。而Docker镜像（Image），就相当于是一个root文件系统。</p>
+<h4 id="2-Docker的基本概念"><a href="#2-Docker的基本概念" class="headerlink" title="2.Docker的基本概念"></a>2.Docker的基本概念</h4><p> Docker 采用的是 Client/Server 架构，所以有必要了解Docker的几个基本概念：</p>
+<p> ■ Client（客户端）</p>
+<p> ■ Server（daemon服务端）</p>
+<p> ■ 镜像（Image） 操作系统分为内核和用户空间。</p>
+<p>对于Linux而言，内核启动后，会挂载root文件系统为其提供用户空间支 持。而Docker镜像（Image），就相当于是一个root文件系统。</p>
 <p>镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何 改变只发生在自己这一层。比如，删除前一层文件的操作，实际不是真的删除前一层的文件，而是仅在当前层 标记为该文件已删除。</p>
 <p>base 镜像：不依赖其他镜像，从 scratch 构建。其他镜像可以在这个基础上进行扩展。</p>
 <p> 新镜像从 base 镜像一层一层叠加生成的，每安装一个软件，就在现有镜像的基础上增加一层。如果多个 镜像从相同的 base 镜像构建而来，那么 Docker Host 只需在磁盘上保存一份 base 镜像。</p>
 <p> 当容器启动时，一个新的可写层被加载到镜像的顶部。这一层通常被称作“容器层”，“容器层”之下的都 叫“镜像层”。 </p>
-<h5 id="■-容器（Container）"><a href="#■-容器（Container）" class="headerlink" title="■ 容器（Container）"></a>■ 容器（Container）</h5><h5 id="■-仓库（Repository）"><a href="#■-仓库（Repository）" class="headerlink" title="■ 仓库（Repository）"></a>■ 仓库（Repository）</h5><h4 id="3-Build，Ship，and-Run"><a href="#3-Build，Ship，and-Run" class="headerlink" title="3.Build，Ship，and Run"></a>3.Build，Ship，and Run</h4><h5 id="■-Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。"><a href="#■-Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。" class="headerlink" title="■ Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。"></a>■ Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。</h5><h5 id="■-Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。"><a href="#■-Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。" class="headerlink" title="■ Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。"></a>■ Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。</h5><h5 id="■-Run-（运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。"><a href="#■-Run-（运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。" class="headerlink" title="■ Run （运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。"></a>■ Run （运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。</h5>
+<p> ■ 容器（Container）</p>
+<p> ■ 仓库（Repository）    </p>
+<h4 id="3-Build，Ship，and-Run"><a href="#3-Build，Ship，and-Run" class="headerlink" title="3.Build，Ship，and Run"></a>3.Build，Ship，and Run</h4><p> ■ Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。</p>
+<p> ■ Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。</p>
+<p> ■ Run （运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。</p>
+
       
 
       
@@ -209,11 +386,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/14/Docker-01概念/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/05/14/Docker简介/">展开全文 >></a>
         </p>
       
 
@@ -253,7 +441,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2019 Tank
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -334,6 +522,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MySQL 优化</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

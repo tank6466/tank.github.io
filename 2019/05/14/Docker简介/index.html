@@ -5,22 +5,23 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hexo</title>
+  <link rel="dns-prefetch" href="http://www.tankai.net">
+  <title>Docker简介 | Tank&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Docker-01 Docker 是什么要点1.Docker是什么 2.为什么使用Docker 3.Docker的安装和使用 一、什么是Docker官方定义：Docker是世界领先的软件容器平台。是dotCloud开源的一个基于LXC（注：LXC又名Linux container，是一种虚拟化的解决方案，是内核级的虚拟化）的高级容器引擎，基于go语言并遵循Apache2.0协议，源码托管于GitH">
+  <meta name="description" content="Docker简介要点1.Docker简介 2.为什么使用Docker 3.Docker的安装和使用 一、什么是Docker官方定义：Docker是世界领先的软件容器平台。是dotCloud开源的一个基于LXC（注：LXC又名Linux container，是一种虚拟化的解决方案，是内核级的虚拟化）的高级容器引擎，基于go语言并遵循Apache2.0协议，源码托管于GitHub。  二、什么是容器">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2019/05/14/Docker-01概念/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Docker-01 Docker 是什么要点1.Docker是什么 2.为什么使用Docker 3.Docker的安装和使用 一、什么是Docker官方定义：Docker是世界领先的软件容器平台。是dotCloud开源的一个基于LXC（注：LXC又名Linux container，是一种虚拟化的解决方案，是内核级的虚拟化）的高级容器引擎，基于go语言并遵循Apache2.0协议，源码托管于GitH">
+<meta property="og:title" content="Docker简介">
+<meta property="og:url" content="http://www.tankai.net/2019/05/14/Docker简介/index.html">
+<meta property="og:site_name" content="Tank&#39;s blog">
+<meta property="og:description" content="Docker简介要点1.Docker简介 2.为什么使用Docker 3.Docker的安装和使用 一、什么是Docker官方定义：Docker是世界领先的软件容器平台。是dotCloud开源的一个基于LXC（注：LXC又名Linux container，是一种虚拟化的解决方案，是内核级的虚拟化）的高级容器引擎，基于go语言并遵循Apache2.0协议，源码托管于GitHub。  二、什么是容器">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-14T04:37:32.613Z">
+<meta property="og:updated_time" content="2019-05-14T06:00:11.862Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="Docker-01 Docker 是什么要点1.Docker是什么 2.为什么使用Docker 3.Docker的安装和使用 一、什么是Docker官方定义：Docker是世界领先的软件容器平台。是dotCloud开源的一个基于LXC（注：LXC又名Linux container，是一种虚拟化的解决方案，是内核级的虚拟化）的高级容器引擎，基于go语言并遵循Apache2.0协议，源码托管于GitH">
+<meta name="twitter:title" content="Docker简介">
+<meta name="twitter:description" content="Docker简介要点1.Docker简介 2.为什么使用Docker 3.Docker的安装和使用 一、什么是Docker官方定义：Docker是世界领先的软件容器平台。是dotCloud开源的一个基于LXC（注：LXC又名Linux container，是一种虚拟化的解决方案，是内核级的虚拟化）的高级容器引擎，基于go语言并遵循Apache2.0协议，源码托管于GitHub。  二、什么是容器">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Tank&#39;s blog" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -50,7 +51,7 @@
 			<img src class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">Tank</a></h1>
 		</hgroup>
 		
 
@@ -108,7 +109,7 @@
 				<img src class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">Tank</h1>
 			</hgroup>
 			
 			
@@ -154,12 +155,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Docker-01概念" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Docker简介" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker简介
+    </h1>
+  
+
+        
+        <a href="/2019/05/14/Docker简介/" class="archive-article-date">
+  	<time datetime="2019-05-14T04:17:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-14</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Docker-01-Docker-是什么"><a href="#Docker-01-Docker-是什么" class="headerlink" title="Docker-01 Docker 是什么"></a>Docker-01 Docker 是什么</h1><h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><p>1.Docker是什么</p>
+        <h1 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h1><h2 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h2><p>1.Docker简介</p>
 <p>2.为什么使用Docker</p>
 <p>3.Docker的安装和使用</p>
 <h2 id="一、什么是Docker"><a href="#一、什么是Docker" class="headerlink" title="一、什么是Docker"></a>一、什么是Docker</h2><p>官方定义：Docker是世界领先的软件容器平台。是dotCloud开源的一个基于LXC（注：LXC又名Linux container，是一种虚拟化的解决方案，是内核级的虚拟化）的高级容器引擎，基于go语言并遵循Apache2.0协议，源码托管于GitHub。 </p>
@@ -194,16 +210,46 @@
 </tr>
 </tbody>
 </table>
-<h3 id="1-虚拟机（寄居架构和裸金属架构）"><a href="#1-虚拟机（寄居架构和裸金属架构）" class="headerlink" title="1.虚拟机（寄居架构和裸金属架构）"></a>1.虚拟机（寄居架构和裸金属架构）</h3><h5 id="■-有自己的OS操作系统"><a href="#■-有自己的OS操作系统" class="headerlink" title="■ 有自己的OS操作系统"></a>■ 有自己的OS操作系统</h5><h5 id="■-独立于主机OS"><a href="#■-独立于主机OS" class="headerlink" title="■ 独立于主机OS"></a>■ 独立于主机OS</h5><h5 id="■-宿主型管理程序将虚机当作一个个进程运行在主机上"><a href="#■-宿主型管理程序将虚机当作一个个进程运行在主机上" class="headerlink" title="■ 宿主型管理程序将虚机当作一个个进程运行在主机上"></a>■ 宿主型管理程序将虚机当作一个个进程运行在主机上</h5><h5 id="■-虚机内核可以和主机不同。"><a href="#■-虚机内核可以和主机不同。" class="headerlink" title="■ 虚机内核可以和主机不同。"></a>■ 虚机内核可以和主机不同。</h5><h5 id="宿主型管理应用程序有："><a href="#宿主型管理应用程序有：" class="headerlink" title="宿主型管理应用程序有："></a>宿主型管理应用程序有：</h5><h5 id="■-开源OpenStack的kvm"><a href="#■-开源OpenStack的kvm" class="headerlink" title="■ 开源OpenStack的kvm"></a>■ 开源OpenStack的kvm</h5><h5 id="■-VMware的vSphere"><a href="#■-VMware的vSphere" class="headerlink" title="■ VMware的vSphere"></a>■ VMware的vSphere</h5><h5 id="■-微软的Hyper-V"><a href="#■-微软的Hyper-V" class="headerlink" title="■ 微软的Hyper-V"></a>■ 微软的Hyper-V</h5><h5 id="■-Citrix的XenServer"><a href="#■-Citrix的XenServer" class="headerlink" title="■ Citrix的XenServer"></a>■ Citrix的XenServer</h5><h5 id="■-IBM的PowerVM"><a href="#■-IBM的PowerVM" class="headerlink" title="■ IBM的PowerVM"></a>■ IBM的PowerVM</h5><h5 id="■-Red-Hat-Enterprise-Virtulization"><a href="#■-Red-Hat-Enterprise-Virtulization" class="headerlink" title="■ Red Hat Enterprise Virtulization"></a>■ Red Hat Enterprise Virtulization</h5><h5 id="■-华为FusionSphere"><a href="#■-华为FusionSphere" class="headerlink" title="■ 华为FusionSphere"></a>■ 华为FusionSphere</h5><h3 id="2-容器"><a href="#2-容器" class="headerlink" title="2.容器"></a>2.容器</h3><h4 id="容器之间共享主机的OS操作系统"><a href="#容器之间共享主机的OS操作系统" class="headerlink" title="容器之间共享主机的OS操作系统"></a>容器之间共享主机的OS操作系统</h4><h4 id="容器被当作一个进程运行在主机上"><a href="#容器被当作一个进程运行在主机上" class="headerlink" title="容器被当作一个进程运行在主机上"></a>容器被当作一个进程运行在主机上</h4><h4 id="容器引擎有："><a href="#容器引擎有：" class="headerlink" title="容器引擎有："></a>容器引擎有：</h4><h5 id="■-Docker"><a href="#■-Docker" class="headerlink" title="■ Docker"></a>■ Docker</h5><h5 id="■CoreOS-rkt"><a href="#■CoreOS-rkt" class="headerlink" title="■CoreOS rkt"></a>■CoreOS rkt</h5><h5 id="■Mesos-containerizer"><a href="#■Mesos-containerizer" class="headerlink" title="■Mesos containerizer"></a>■Mesos containerizer</h5><h3 id="容器就是将软件打包成标准化单元，以用于开发、交付和部署"><a href="#容器就是将软件打包成标准化单元，以用于开发、交付和部署" class="headerlink" title="容器就是将软件打包成标准化单元，以用于开发、交付和部署"></a>容器就是将软件打包成标准化单元，以用于开发、交付和部署</h3><h2 id="三、为什么使用Docker"><a href="#三、为什么使用Docker" class="headerlink" title="三、为什么使用Docker"></a>三、为什么使用Docker</h2><h4 id="■-团队开发、解决开发环境问题"><a href="#■-团队开发、解决开发环境问题" class="headerlink" title="■  团队开发、解决开发环境问题"></a>■  团队开发、解决开发环境问题</h4><h4 id="■-秒级甚至毫秒级的启动时间"><a href="#■-秒级甚至毫秒级的启动时间" class="headerlink" title="■   秒级甚至毫秒级的启动时间"></a>■   秒级甚至毫秒级的启动时间</h4><h4 id="■-方便应用的部署和迁移"><a href="#■-方便应用的部署和迁移" class="headerlink" title="■   方便应用的部署和迁移"></a>■   方便应用的部署和迁移</h4><h4 id="■-持续集成、持续交付和部署"><a href="#■-持续集成、持续交付和部署" class="headerlink" title="■   持续集成、持续交付和部署"></a>■   持续集成、持续交付和部署</h4><h4 id="■-程序服务资源竞争的问题"><a href="#■-程序服务资源竞争的问题" class="headerlink" title="■   程序服务资源竞争的问题"></a>■   程序服务资源竞争的问题</h4><h4 id="■-服务器集群-节点-动态扩容"><a href="#■-服务器集群-节点-动态扩容" class="headerlink" title="■   服务器集群/节点 动态扩容"></a>■   服务器集群/节点 动态扩容</h4><h2 id="四、Docker的安装使用"><a href="#四、Docker的安装使用" class="headerlink" title="四、Docker的安装使用"></a>四、Docker的安装使用</h2><h4 id="1-Docker的安装"><a href="#1-Docker的安装" class="headerlink" title="1.Docker的安装"></a>1.Docker的安装</h4><p>1.#yum install docker             #安装docker</p>
+<h3 id="1-虚拟机（寄居架构和裸金属架构）"><a href="#1-虚拟机（寄居架构和裸金属架构）" class="headerlink" title="1.虚拟机（寄居架构和裸金属架构）"></a>1.虚拟机（寄居架构和裸金属架构）</h3><p> ■ 有自己的OS操作系统</p>
+<p> ■ 独立于主机OS</p>
+<p> ■ 宿主型管理程序将虚机当作一个个进程运行在主机上</p>
+<p> ■ 虚机内核可以和主机不同。</p>
+<p> 宿主型管理应用程序有：</p>
+<p> ■ 开源OpenStack的kvm</p>
+<p> ■ VMware的vSphere</p>
+<p> ■ 微软的Hyper-V</p>
+<p> ■ Citrix的XenServer</p>
+<p> ■ IBM的PowerVM</p>
+<p> ■ Red Hat Enterprise Virtulization</p>
+<p> ■ 华为FusionSphere</p>
+<h3 id="2-容器"><a href="#2-容器" class="headerlink" title="2.容器"></a>2.容器</h3><h4 id="容器之间共享主机的OS操作系统"><a href="#容器之间共享主机的OS操作系统" class="headerlink" title="容器之间共享主机的OS操作系统"></a>容器之间共享主机的OS操作系统</h4><h4 id="容器被当作一个进程运行在主机上"><a href="#容器被当作一个进程运行在主机上" class="headerlink" title="容器被当作一个进程运行在主机上"></a>容器被当作一个进程运行在主机上</h4><h4 id="容器引擎有："><a href="#容器引擎有：" class="headerlink" title="容器引擎有："></a>容器引擎有：</h4><p> ■ Docker</p>
+<p> ■CoreOS rkt    </p>
+<p> ■Mesos containerizer</p>
+<h3 id="容器就是将软件打包成标准化单元，以用于开发、交付和部署"><a href="#容器就是将软件打包成标准化单元，以用于开发、交付和部署" class="headerlink" title="容器就是将软件打包成标准化单元，以用于开发、交付和部署"></a>容器就是将软件打包成标准化单元，以用于开发、交付和部署</h3><h2 id="三、为什么使用Docker"><a href="#三、为什么使用Docker" class="headerlink" title="三、为什么使用Docker"></a>三、为什么使用Docker</h2><p> ■  团队开发、解决开发环境问题</p>
+<p> ■   秒级甚至毫秒级的启动时间</p>
+<p> ■   方便应用的部署和迁移</p>
+<p> ■   持续集成、持续交付和部署</p>
+<p> ■   程序服务资源竞争的问题</p>
+<p> ■   服务器集群/节点 动态扩容 </p>
+<h2 id="四、Docker的安装使用"><a href="#四、Docker的安装使用" class="headerlink" title="四、Docker的安装使用"></a>四、Docker的安装使用</h2><h4 id="1-Docker的安装"><a href="#1-Docker的安装" class="headerlink" title="1.Docker的安装"></a>1.Docker的安装</h4><p>1.#yum install docker             #安装docker</p>
 <p>2.#systemctl start docker         #启动docker</p>
 <p>3.#systemctl enable docker     # 开机启动docker</p>
 <p>4.#docker info                  #查看docker信息</p>
-<h4 id="2-Docker的基本概念"><a href="#2-Docker的基本概念" class="headerlink" title="2.Docker的基本概念"></a>2.Docker的基本概念</h4><h5 id="Docker-采用的是-Client-Server-架构，所以有必要了解Docker的几个基本概念："><a href="#Docker-采用的是-Client-Server-架构，所以有必要了解Docker的几个基本概念：" class="headerlink" title="Docker 采用的是 Client/Server 架构，所以有必要了解Docker的几个基本概念："></a>Docker 采用的是 Client/Server 架构，所以有必要了解Docker的几个基本概念：</h5><h5 id="■-Client（客户端）"><a href="#■-Client（客户端）" class="headerlink" title="■ Client（客户端）"></a>■ Client（客户端）</h5><h5 id="■-Server（daemon服务端）"><a href="#■-Server（daemon服务端）" class="headerlink" title="■ Server（daemon服务端）"></a>■ Server（daemon服务端）</h5><h5 id="■-镜像（Image）-操作系统分为内核和用户空间。"><a href="#■-镜像（Image）-操作系统分为内核和用户空间。" class="headerlink" title="■ 镜像（Image） 操作系统分为内核和用户空间。"></a>■ 镜像（Image） 操作系统分为内核和用户空间。</h5><p>对于Linux而言，内核启动后，会挂载root文件系统为其提供用户空间支 持。而Docker镜像（Image），就相当于是一个root文件系统。</p>
+<h4 id="2-Docker的基本概念"><a href="#2-Docker的基本概念" class="headerlink" title="2.Docker的基本概念"></a>2.Docker的基本概念</h4><p> Docker 采用的是 Client/Server 架构，所以有必要了解Docker的几个基本概念：</p>
+<p> ■ Client（客户端）</p>
+<p> ■ Server（daemon服务端）</p>
+<p> ■ 镜像（Image） 操作系统分为内核和用户空间。</p>
+<p>对于Linux而言，内核启动后，会挂载root文件系统为其提供用户空间支 持。而Docker镜像（Image），就相当于是一个root文件系统。</p>
 <p>镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何 改变只发生在自己这一层。比如，删除前一层文件的操作，实际不是真的删除前一层的文件，而是仅在当前层 标记为该文件已删除。</p>
 <p>base 镜像：不依赖其他镜像，从 scratch 构建。其他镜像可以在这个基础上进行扩展。</p>
 <p> 新镜像从 base 镜像一层一层叠加生成的，每安装一个软件，就在现有镜像的基础上增加一层。如果多个 镜像从相同的 base 镜像构建而来，那么 Docker Host 只需在磁盘上保存一份 base 镜像。</p>
 <p> 当容器启动时，一个新的可写层被加载到镜像的顶部。这一层通常被称作“容器层”，“容器层”之下的都 叫“镜像层”。 </p>
-<h5 id="■-容器（Container）"><a href="#■-容器（Container）" class="headerlink" title="■ 容器（Container）"></a>■ 容器（Container）</h5><h5 id="■-仓库（Repository）"><a href="#■-仓库（Repository）" class="headerlink" title="■ 仓库（Repository）"></a>■ 仓库（Repository）</h5><h4 id="3-Build，Ship，and-Run"><a href="#3-Build，Ship，and-Run" class="headerlink" title="3.Build，Ship，and Run"></a>3.Build，Ship，and Run</h4><h5 id="■-Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。"><a href="#■-Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。" class="headerlink" title="■ Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。"></a>■ Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。</h5><h5 id="■-Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。"><a href="#■-Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。" class="headerlink" title="■ Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。"></a>■ Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。</h5><h5 id="■-Run-（运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。"><a href="#■-Run-（运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。" class="headerlink" title="■ Run （运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。"></a>■ Run （运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。</h5>
+<p> ■ 容器（Container）</p>
+<p> ■ 仓库（Repository）    </p>
+<h4 id="3-Build，Ship，and-Run"><a href="#3-Build，Ship，and-Run" class="headerlink" title="3.Build，Ship，and Run"></a>3.Build，Ship，and Run</h4><p> ■ Build（构建镜像）：镜像就像是集装箱包括文件以及运行环境等等资源。</p>
+<p> ■ Ship（运输镜像）：主机和仓库间运输，这里的仓库就像是超级码头一样。</p>
+<p> ■ Run （运行镜像）：运行的镜像就是一个容器，容器就是运行程序的地方。</p>
+
       
 
       
@@ -232,6 +278,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -282,7 +339,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/14/Docker-01概念/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.tankai.net/2019/05/14/Docker简介/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,6 +351,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2019/05/14/MySql优化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MySql优化
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -331,7 +402,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2019 Tank
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -412,6 +483,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MySQL 优化</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
