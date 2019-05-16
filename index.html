@@ -152,6 +152,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux中SSH免密登录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/16/Linux中SSH免密登录/">Linux中SSH免密登录</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/16/Linux中SSH免密登录/" class="archive-article-date">
+  	<time datetime="2019-05-16T01:15:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Linux远程ssh免密登录"><a href="#Linux远程ssh免密登录" class="headerlink" title="Linux远程ssh免密登录"></a>Linux远程ssh免密登录</h1><h2 id="一、配置hosts文件"><a href="#一、配置hosts文件" class="headerlink" title="一、配置hosts文件"></a>一、配置hosts文件</h2><p>1.配置hosts文件：</p>
+<p> 配置命令：vim /etc/hosts</p>
+<p>添加 IP+Name （例如：192.168.220.129 liunx001）</p>
+<h2 id="二、什么是SSH"><a href="#二、什么是SSH" class="headerlink" title="二、什么是SSH"></a>二、什么是SSH</h2><ul>
+<li><p>管理员可以通过远程登陆的方式，对通过网相连的分散于各处的多台主机进行管理操作。</p>
+</li>
+<li><p>管理员可以对远程主机进行如下操作： </p>
+<p>​     1.远程登录</p>
+<p>​     2.远程命令执行</p>
+<p>​     3.远程文件传输</p>
+</li>
+<li><p>存在的隐患：不安全，纯文本而且是明文发送，安全系数可见一斑。</p>
+</li>
+<li><p>SSH的目标就是在不安全的网络安全下安全的网络服务</p>
+</li>
+</ul>
+<h2 id="三、SSH免密登录"><a href="#三、SSH免密登录" class="headerlink" title="三、SSH免密登录"></a>三、SSH免密登录</h2><h3 id="免密登录流程"><a href="#免密登录流程" class="headerlink" title="免密登录流程"></a>免密登录流程</h3><p>   1.基于口令的验证：</p>
+<p>   <img src="C:\Users\lenovo\AppData\Local\Temp\1557970047473.png" alt="1557970047473"></p>
+<p>  ​        </p>
+<p>  ​         只要知道帐号和口令，就可以登录到远程主机。所有传输的数据都会被加密，但缺点是：不能保证你正在连接的服务器就是你想连接的服务器。</p>
+<p>  2.基于密钥的验证：</p>
+<p>  <img src="https://qqadapt.qpic.cn/txdocpic/0/102328279c70974bd1cdde89629e9ce7/0" alt="img"> </p>
+<p>​          这种验证的前提是客户端需要生成一对密钥，将公钥放到需访问的远程服务器。这种验证比上一种的好处是，不能仿冒真正的服务器，因为要仿冒必须拿到客户端生成的公钥。缺点就是验证等待过程稍长些。 </p>
+<h2 id="三、生成密钥并登录"><a href="#三、生成密钥并登录" class="headerlink" title="三、生成密钥并登录"></a>三、生成密钥并登录</h2><p>1.生成密钥：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#  ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<p><img src="https://images2017.cnblogs.com/blog/1297156/201712/1297156-20171221145425334-208619713.png" alt="img"> </p>
+<p>　生成之后会在用户的根目录生成一个 “.ssh”的文件夹  用 ls -atrl 查看</p>
+<p><img src="https://images2017.cnblogs.com/blog/1297156/201712/1297156-20171221145502521-1060486299.png" alt="img"> </p>
+<p>进入.ssh 目录可以看到以下文件 ：</p>
+<p>id_rsa : 生成的私钥文件</p>
+<p>id_rsa.pub ： 生成的公钥文件</p>
+<p>know_hosts : 已知的主机公钥清单</p>
+<p>2.最终免密登录</p>
+<p> 首先需要通过ssh-copy-id 的方式将公钥copy到 需要登录的服务器上</p>
+<p> 命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.put [ip/hosts]</span><br><span class="line">例如： ssh-copy-id -i ~/.ssh/id_rsa.pub linux001</span><br></pre></td></tr></table></figure>
+<p>首次copy过去需要输入远程Linux服务器的密码。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh linux001</span><br></pre></td></tr></table></figure>
+<p>最后就可以愉快的ssh登录到远程Linux服务器啦！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SSH远程免密登录</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/16/Linux中SSH免密登录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MySql优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -529,6 +641,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MySQL 优化</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SSH远程免密登录</a>
               </li>
             
             <div class="clearfix"></div>
