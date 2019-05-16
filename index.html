@@ -189,17 +189,16 @@
 </li>
 </ul>
 <h2 id="三、SSH免密登录"><a href="#三、SSH免密登录" class="headerlink" title="三、SSH免密登录"></a>三、SSH免密登录</h2><h3 id="免密登录流程"><a href="#免密登录流程" class="headerlink" title="免密登录流程"></a>免密登录流程</h3><p>   1.基于口令的验证：</p>
-<p>   <img src="C:\Users\lenovo\AppData\Local\Temp\1557970047473.png" alt="1557970047473"></p>
+<p><img src="/2019/05/16/Linux中SSH免密登录/基于口令的验证.jpg" alt></p>
 <p>  ​        </p>
 <p>  ​         只要知道帐号和口令，就可以登录到远程主机。所有传输的数据都会被加密，但缺点是：不能保证你正在连接的服务器就是你想连接的服务器。</p>
 <p>  2.基于密钥的验证：</p>
-<p>  <img src="https://qqadapt.qpic.cn/txdocpic/0/102328279c70974bd1cdde89629e9ce7/0" alt="img"> </p>
-<p>​          这种验证的前提是客户端需要生成一对密钥，将公钥放到需访问的远程服务器。这种验证比上一种的好处是，不能仿冒真正的服务器，因为要仿冒必须拿到客户端生成的公钥。缺点就是验证等待过程稍长些。 </p>
+<p><img src="/2019/05/16/Linux中SSH免密登录/基于密钥的验证.jpg" alt><br>​          这种验证的前提是客户端需要生成一对密钥，将公钥放到需访问的远程服务器。这种验证比上一种的好处是，不能仿冒真正的服务器，因为要仿冒必须拿到客户端生成的公钥。缺点就是验证等待过程稍长些。 </p>
 <h2 id="三、生成密钥并登录"><a href="#三、生成密钥并登录" class="headerlink" title="三、生成密钥并登录"></a>三、生成密钥并登录</h2><p>1.生成密钥：</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#  ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
-<p><img src="https://images2017.cnblogs.com/blog/1297156/201712/1297156-20171221145425334-208619713.png" alt="img"> </p>
+<p><img src="/2019/05/16/Linux中SSH免密登录/生成密钥.jpg" alt></p>
 <p>　生成之后会在用户的根目录生成一个 “.ssh”的文件夹  用 ls -atrl 查看</p>
-<p><img src="https://images2017.cnblogs.com/blog/1297156/201712/1297156-20171221145502521-1060486299.png" alt="img"> </p>
+<p><img src="/2019/05/16/Linux中SSH免密登录/查看ls.jpg" alt></p>
 <p>进入.ssh 目录可以看到以下文件 ：</p>
 <p>id_rsa : 生成的私钥文件</p>
 <p>id_rsa.pub ： 生成的公钥文件</p>
